@@ -1,0 +1,69 @@
+import UIKit
+/*Pratica de Iris*/
+enum velocidades : Int{
+    
+    case pagado = 0,  velocidadBaja = 20, velocidadMedia = 50, velocidadAlta = 120
+    
+    init( velocidadInicial : velocidades ){
+        
+        self = velocidadInicial
+    }
+    
+}
+
+
+class Auto{
+    
+    var velocidad : velocidades? = nil
+    
+    init(){
+        velocidad=velocidades(velocidadInicial:velocidades.pagado)
+    }
+    
+    func cambioDeVelocidad( ) ->  (actual : Int, velocidadEnCadena: String){
+        
+        var actual = 0
+        var velocidadEnCadena=""
+         
+        if(velocidad==velocidades.pagado){
+            
+            actual=velocidad!.rawValue
+            velocidadEnCadena="Apagado cambia a VelocidadBaja"
+            velocidad=velocidades.velocidadBaja
+        }
+        else if(velocidad == velocidades.velocidadBaja){
+            actual=velocidad!.rawValue
+            velocidadEnCadena="VelocidadBaja cambia a VelocidadMedia"
+            velocidad=velocidades.velocidadMedia
+        }
+        else if(velocidad==velocidades.velocidadMedia)
+        {
+            actual=velocidad!.rawValue
+            velocidadEnCadena="VelocidadMedia cambia a VelocidadAlta"
+            velocidad=velocidades.velocidadAlta
+            
+        }
+        else if (velocidad == velocidades.velocidadAlta){
+            
+            actual=velocidad!.rawValue
+            velocidadEnCadena="VelocidadAlta cambia a VelocidadMedia"
+            velocidad=velocidades.velocidadMedia
+        }
+        
+        return (actual,velocidadEnCadena)
+        
+    }
+    
+}
+
+
+var A = Auto()
+var tupla : (actual : Int,velocidadEnCadena: String)
+
+
+for i in 1...20
+{
+tupla=A.cambioDeVelocidad()
+    print ("\(tupla.actual) - \(tupla.velocidadEnCadena)")
+}
+
